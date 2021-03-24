@@ -1,4 +1,4 @@
-/*1.¿©±â¼­ºÎÅÍ*/
+/*1.Please run it from here*/
 drop table jg_comment;
 drop table jg_board;
 drop table jg_member;
@@ -8,9 +8,9 @@ drop table jg_major;
 
 drop sequence seq_board;
 drop sequence seq_comment;
-/*2.¿©±â±îÁö ¸ÕÀú ½ÇÇàÇØÁÖ¼¼¿ä*/
+/*2.to here first.*/
 
-/*3.±× ´ÙÀ½ ¿©±â¼­ºÎÅÍ µå·¡±× ÈÄ ½ÇÇà ½ÃÄÑÁÖ¼¼¿ä*/
+/*3.Then run from here*/
 select * from jg_member;
 select * from jg_board;
 select * from jg_book;
@@ -86,102 +86,102 @@ increment by 1
 start with 1;
 
 insert into jg_major
-values ('m01', '°æ¿µ´ëÇÐ');
+values ('m01', 'College of Business');
 insert into jg_major
-values ('m02', 'ÀÎ¹®´ëÇÐ');
+values ('m02', 'College of Humanities');
 insert into jg_major
-values ('m03', 'ÀÌ°ú´ëÇÐ');
+values ('m03', 'College of Science');
 
 insert into jg_department
-values ('d01', '°æ¿µÇÐ°ú','m01');
+values ('d01', 'business department','m01');
 insert into jg_department
-values ('d02', '°æÁ¦ÇÐ°ú','m01');
+values ('d02', 'department of economics','m01');
 insert into jg_department
-values ('d03', '±¹Á¦Åë»óÇÐ°ú','m01');
+values ('d03', 'department of International Trade','m01');
 insert into jg_department
-values ('d04', '¹®ÇåÁ¤º¸ÇÐ°ú','m02');
+values ('d04', 'literary information','m02');
 insert into jg_department
-values ('d05', 'Áß¾Ó¾Æ½Ã¾ÆÇÐ°ú','m02');
+values ('d05', 'Central Asian Studies','m02');
 insert into jg_department
-values ('d06', 'ÄÄÇ»ÅÍ°øÇÐ°ú','m03');
+values ('d06', 'computer engineering','m03');
 insert into jg_department
-values ('d07', 'ÀüÀÚ°øÇÐ°ú','m03');
+values ('d07', 'electronics','m03');
 
 insert into jg_book
-values ('b01', '½º¸¶Æ® °æ¿µ°úÇÐ','d01');
+values ('b01', 'ï¿½ï¿½ï¿½ï¿½Æ® ï¿½æ¿µï¿½ï¿½ï¿½ï¿½','d01');
 insert into jg_book
-values ('b02', '±Û·Î¹ú»ó°Å·¡°ü¸®','d01');
+values ('b02', 'ï¿½Û·Î¹ï¿½ï¿½ï¿½Å·ï¿½ï¿½ï¿½ï¿½ï¿½','d01');
 insert into jg_book
-values ('b03', '°í¿ë°ü°è·Ð','d01');
+values ('b03', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','d01');
 insert into jg_book
-values ('b04', '½ÃÀåÁöÇâÀû ºñÁî´Ï½º ¸¶ÄÉÆÃ Àü·« 3rd ed.','d01');
+values ('b04', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 3rd ed.','d01');
 insert into jg_book
-values ('b05', '°ü¸®È¸°è','d01');
+values ('b05', 'ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½','d01');
 
 insert into jg_book
-values ('b06', '°æ¿µÀü·«°ú °æ¿µ°æÁ¦ÇÐ','d02');
+values ('b06', 'ï¿½æ¿µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æ¿µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','d02');
 insert into jg_book
-values ('b07', '±Û·Î¹ú°æÁ¦»ó½Ä»çÀü','d02');
+values ('b07', 'ï¿½Û·Î¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½ï¿½','d02');
 insert into jg_book
-values ('b08', '¿ì¸®³ª¶óÀÇ ±ÝÀ¶½ÃÀå','d02');
+values ('b08', 'ï¿½ì¸®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','d02');
 insert into jg_book
-values ('b09', 'ÀçÁ¤ÇÐ','d02');
+values ('b09', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','d02');
 insert into jg_book
-values ('b10', 'ÅõÀÚ°¡¸¦ À§ÇÑ ¾Ë±â ½¬¿î Áõ±Ç°æÁ¦·Ð','d02');
+values ('b10', 'ï¿½ï¿½ï¿½Ú°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½','d02');
 
 insert into jg_book
-values ('b11', 'ÇÙ½É ±¹Á¦°æÁ¦ÇÐ 3ÆÇ','d03');
+values ('b11', 'ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 3ï¿½ï¿½','d03');
 insert into jg_book
-values ('b12', '»ç·ÊÁß½É°æ¿µÇÐ¿ø·Ð','d03');
+values ('b12', 'ï¿½ï¿½ï¿½ï¿½ß½É°æ¿µï¿½Ð¿ï¿½ï¿½ï¿½','d03');
 insert into jg_book
-values ('b13', 'ÇØ¿Ü½ÃÀåÁøÃâ¹æ½ÄÀÇ ÀÌÇØ','d03');
+values ('b13', 'ï¿½Ø¿Ü½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½','d03');
 insert into jg_book
-values ('b14', '°³Á¤ÆÇ ÀüÀÚ¹«¿ª','d03');
+values ('b14', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ï¿½','d03');
 insert into jg_book
-values ('b15', '±¹Á¦Åë»óÁ¤Ã¥·Ð','d03');
+values ('b15', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¥ï¿½ï¿½','d03');
 
 insert into jg_book
 values ('b16', 'IT CookBook','d04');
 insert into jg_book
-values ('b17', 'µðÁöÅÐ½Ã´ëÀÇ Á¤º¸Ç¥Çö°ú °Ë»ö','d04');
+values ('b17', 'ï¿½ï¿½ï¿½ï¿½ï¿½Ð½Ã´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½','d04');
 insert into jg_book
 values ('b18', 'Marcia Zeng and Jin Qin. (2016). Metadata. 2nd Edition','d04');
 insert into jg_book
-values ('b19', 'ÀÚ·á¸ñ·Ï¹ý Á¦6ÆÇ','d04');
+values ('b19', 'ï¿½Ú·ï¿½ï¿½Ï¹ï¿½ ï¿½ï¿½6ï¿½ï¿½','d04');
 insert into jg_book
-values ('b20', 'Àå¼­°ü¸®·Ð','d04');
+values ('b20', 'ï¿½å¼­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','d04');
 
 insert into jg_book
-values ('b21', '¾ÆÆ²¶ó½º Áß¾ÓÀ¯¶ó½Ã¾Æ»ç','d05');
+values ('b21', 'ï¿½ï¿½Æ²ï¿½ï¿½ ï¿½ß¾ï¿½ï¿½ï¿½ï¿½ï¿½Ã¾Æ»ï¿½','d05');
 insert into jg_book
-values ('b22', '·¯½Ã¾Æ¾îÀÇ Ã¹°ÉÀ½ÀÇ ¸ðµç°Í','d05');
+values ('b22', 'ï¿½ï¿½ï¿½Ã¾Æ¾ï¿½ï¿½ï¿½ Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½','d05');
 insert into jg_book
-values ('b23', 'Ä«¶ó¸¶Á¶ÇÁ°¡ÀÇ ÇüÁ¦µé','d05');
+values ('b23', 'Ä«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','d05');
 insert into jg_book
-values ('b24', 'ÃÊ±ÞÄ«ÀÛ¾î','d05');
+values ('b24', 'ï¿½Ê±ï¿½Ä«ï¿½Û¾ï¿½','d05');
 insert into jg_book
-values ('b25', '·¯½Ã¾Æ·Î °¡´Â ±æ','d05');
+values ('b25', 'ï¿½ï¿½ï¿½Ã¾Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½','d05');
 
 insert into jg_book
-values ('b26', 'Á¤º¸º¸¾È°³·Ð','d06');
+values ('b26', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È°ï¿½ï¿½ï¿½','d06');
 insert into jg_book
-values ('b27', '¿¢¼¿À» ÀÌ¿ëÇÑ Åë°èÀÚ·áºå¼® ¼Õ¿¡ ÀâÈ÷´Â ±âÃÊÅë°èÇÐ','d06');
+values ('b27', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú·ï¿½å¼® ï¿½Õ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','d06');
 insert into jg_book
-values ('b28', '¾Ù¸®½º¸¦ ÀÌ¿ëÇÑ ÇÁ·Î±×·¡¹ÖÀÇ ÇÐ½À','d06');
+values ('b28', 'ï¿½Ù¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð½ï¿½','d06');
 insert into jg_book
-values ('b29', '¿ÀÇÂ ¼Ò½º ¼ÒÇÁÆ®¿þ¾î·Î ½Ç½ÀÇÏ´Â ¼ÒÇÁÆ®¿þ¾î °øÇÐ','d06');
+values ('b29', 'ï¿½ï¿½ï¿½ï¿½ ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½','d06');
 insert into jg_book
-values ('b30', 'µ¥ÀÌÅÍÅë½Å°ú ³×Æ®¿öÅ·','d06');
+values ('b30', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å°ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½Å·','d06');
 
 insert into jg_book
-values ('b31', 'CDMA ÀÌµ¿Åë½Å°øÇÐ','d07');
+values ('b31', 'CDMA ï¿½Ìµï¿½ï¿½ï¿½Å°ï¿½ï¿½ï¿½','d07');
 insert into jg_book
-values ('b32', 'RF ¹× ÃÊ°íÁÖÆÄ°øÇÐ','d07');
+values ('b32', 'RF ï¿½ï¿½ ï¿½Ê°ï¿½ï¿½ï¿½ï¿½Ä°ï¿½ï¿½ï¿½','d07');
 insert into jg_book
-values ('b33', '¾Æ³¯·Î±× ¹× µðÁöÅÐ Åë½ÅÀÌ·Ð','d07');
+values ('b33', 'ï¿½Æ³ï¿½ï¿½Î±ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ì·ï¿½','d07');
 insert into jg_book
-values ('b34', '±âÃÊÀü±âÀüÀÚ°øÇÐ½ÇÇè','d07');
+values ('b34', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ï¿½Ð½ï¿½ï¿½ï¿½','d07');
 insert into jg_book
-values ('b35', '¹ÝµµÃ¼¿Í µð½ºÇÃ·¹ÀÌ°øÇÐÀ» À§ÇÑ ¼¾¼­°øÇÐ','d07');
+values ('b35', 'ï¿½Ýµï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½Ã·ï¿½ï¿½Ì°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','d07');
 
 commit;
