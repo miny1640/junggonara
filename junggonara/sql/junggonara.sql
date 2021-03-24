@@ -108,80 +108,80 @@ insert into jg_department
 values ('d07', 'electronics','m03');
 
 insert into jg_book
-values ('b01', '����Ʈ �濵����','d01');
+values ('b01', 'smart business science','d01');
 insert into jg_book
-values ('b02', '�۷ι���ŷ�����','d01');
+values ('b02', 'global commerce management','d01');
 insert into jg_book
-values ('b03', '�������','d01');
+values ('b03', 'employment relationship','d01');
 insert into jg_book
-values ('b04', '���������� ����Ͻ� ������ ���� 3rd ed.','d01');
+values ('b04', 'market-oriented business marketing strategy 3rd ed.','d01');
 insert into jg_book
-values ('b05', '����ȸ��','d01');
+values ('b05', 'Management Accounting','d01');
 
 insert into jg_book
-values ('b06', '�濵������ �濵������','d02');
+values ('b06', 'Management Strategy and Business Economics','d02');
 insert into jg_book
-values ('b07', '�۷ι�������Ļ���','d02');
+values ('b07', 'Global Economic Common Sense Dictionary','d02');
 insert into jg_book
-values ('b08', '�츮������ ��������','d02');
+values ('b08', 'our country_s financial markets','d02');
 insert into jg_book
-values ('b09', '������','d02');
+values ('b09', 'finance','d02');
 insert into jg_book
-values ('b10', '���ڰ��� ���� �˱� ���� ���ǰ�����','d02');
+values ('b10', 'Easy to Know Securities Economy for Investors','d02');
 
 insert into jg_book
-values ('b11', '�ٽ� ���������� 3��','d03');
+values ('b11', 'core international economics 3','d03');
 insert into jg_book
-values ('b12', '����߽ɰ濵�п���','d03');
+values ('b12', 'case-centered management academy theory','d03');
 insert into jg_book
-values ('b13', '�ؿܽ����������� ����','d03');
+values ('b13', 'understanding how to enter overseas markets','d03');
 insert into jg_book
-values ('b14', '������ ���ڹ���','d03');
+values ('b14', 'revised electronic trade','d03');
 insert into jg_book
-values ('b15', '���������å��','d03');
+values ('b15', 'International Trade Policy','d03');
 
 insert into jg_book
 values ('b16', 'IT CookBook','d04');
 insert into jg_book
-values ('b17', '�����нô��� ����ǥ���� �˻�','d04');
+values ('b17', 'expression and retrieval of information in the digital age','d04');
 insert into jg_book
 values ('b18', 'Marcia Zeng and Jin Qin. (2016). Metadata. 2nd Edition','d04');
 insert into jg_book
-values ('b19', '�ڷ��Ϲ� ��6��','d04');
+values ('b19', '6th Edition of the Data Listing Act','d04');
 insert into jg_book
-values ('b20', '�弭������','d04');
+values ('b20', 'the theory of library management','d04');
 
 insert into jg_book
-values ('b21', '��Ʋ�� �߾�����þƻ�','d05');
+values ('b21', 'Atlas Central Eurasian History','d05');
 insert into jg_book
-values ('b22', '���þƾ��� ù������ ����','d05');
+values ('b22', 'everything at the beginning of Russian','d05');
 insert into jg_book
-values ('b23', 'ī���������� ������','d05');
+values ('b23', 'Karamazov_s brothers','d05');
 insert into jg_book
-values ('b24', '�ʱ�ī�۾�','d05');
+values ('b24', 'beginning kazak','d05');
 insert into jg_book
-values ('b25', '���þƷ� ���� ��','d05');
+values ('b25', 'the way to Russia','d05');
 
 insert into jg_book
-values ('b26', '�������Ȱ���','d06');
+values ('b26', 'Information Security Introduction', 'd06');
 insert into jg_book
-values ('b27', '������ �̿��� ����ڷ�弮 �տ� ������ ���������','d06');
+values ('b27', 'basic statistics in hand using Excel', 'd06');
 insert into jg_book
-values ('b28', '�ٸ����� �̿��� ���α׷����� �н�','d06');
+values ('b28', 'learning of programming using alice', 'd06');
 insert into jg_book
-values ('b29', '���� �ҽ� ����Ʈ����� �ǽ��ϴ� ����Ʈ���� ����','d06');
+values ('b29', 'software engineering with open source software', 'd06');
 insert into jg_book
-values ('b30', '��������Ű� ��Ʈ��ŷ','d06');
+values ('b30', 'data communication and networking', 'd06');
 
 insert into jg_book
-values ('b31', 'CDMA �̵���Ű���','d07');
+values ('b31', 'CDMA mobile communication engineering', 'd07');
 insert into jg_book
-values ('b32', 'RF �� �ʰ����İ���','d07');
+values ('b32', 'RF and ultra-high frequency engineering', 'd07');
 insert into jg_book
-values ('b33', '�Ƴ��α� �� ������ ����̷�','d07');
+values ('b33', 'Analog and Digital Communication Theory', 'd07');
 insert into jg_book
-values ('b34', '�����������ڰ��н���','d07');
+values ('b34', 'Basic Electrical and Electronic Engineering Experiment', 'd07');
 insert into jg_book
-values ('b35', '�ݵ�ü�� ���÷��̰����� ���� ��������','d07');
+values ('b35', 'Sensor Engineering for Semiconductor and Display Engineering', 'd07');
 
 commit;
