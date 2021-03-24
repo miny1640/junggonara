@@ -1,0 +1,72 @@
+<%@page import="exe.entity.BookEntity"%>
+<%@page import="exe.dao.BookDAO"%>
+<%@page import="exe.entity.BoardEntity"%>
+<%@page import="exe.dao.DepartmentDAO"%>
+<%@page import="exe.entity.DepartmentEntity"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+   pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/update.css" />
+
+</head>
+<body>
+<%
+	BoardEntity board = (BoardEntity)request.getAttribute("board");
+	BookDAO bookDAO = new BookDAO();
+	BookEntity book = bookDAO.selectBook(board.getBk_code());
+%>
+<form 	method="post">
+	<div align="center">
+	<h1 style="margin-top:30px;">[수정 페이지]</h1>
+	
+		<table>
+			<tr>
+				<th>번호</th>
+				<td colspan="2"><%=board.getBr_num()%><input type="hidden" name="br_num"
+					value="<%=board.getBr_num()%>" style="align:center;"/></td>
+			</tr>
+			<tr>
+				<th>제목</th>
+				<td colspan="2"><input type="text" name="br_title"
+					value="<%=board.getBr_title()%>" style="align:center;height:30px;"/></td>
+			</tr>
+			<tr>
+				<th>책 이름</th>
+				<td colspan="2"><%=book.getBk_title() %><input type="hidden" name="bk_code"
+					value="<%=board.getBk_code()%>" style="align:center;"/></td>
+			</tr>
+			<tr>
+				<th>가격</th>
+				<td colspan="2"><input type="text" name="br_price"
+					value="<%=board.getBr_price()%>" style="align:center;height:30px;"/></td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td colspan="2"><textarea name="br_content">
+				<%=board.getBr_content()%></textarea></td>
+			</tr>
+			
+			<tr id="button">
+				<td colspan="3" align="center">
+				<input type="submit" value="수정" formaction="boardUpdate.do"
+				 style="background-color:white;width:80px;height:30px;cursor:pointer;"/>
+				 
+				<input type="submit" value="초기화" formaction="boardUpdateForm.do" 
+				style="background-color:white;width:80px;height:30px;cursor:pointer;"/>
+				
+				<input type="submit" value="뒤로가기" formaction="boardDetail.do" 
+				style="background-color:white;width:80px;height:30px;cursor:pointer;"/>
+				</td>
+					
+			</tr>
+		
+		</table>
+		</div>
+</form>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<%@page import="exe.entity.MemberEntity"%>
+<%@page import="exe.entity.BoardEntity"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<%
+	BoardEntity board = (BoardEntity)request.getAttribute("board");
+%>
+<title><%= board.getBr_title() %></title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/boardMainCSS.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script src = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+<link rel = "stylesheet" href = "https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+<link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+<%
+		MemberEntity member = (MemberEntity)session.getAttribute("member");
+%>
+
+<!-- 상단 바 -->
+  <header class="mdl-layout__header mdl-layout__header--waterfall">
+    <!-- Top row, always visible -->
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">
+      <a href="boardMain.do"><img src = "image/main2.png" width="220" height="180" style="position:absolute; top:-45px; left:640px;"/></a>
+      </span>
+      <div class="mdl-layout-spacer"></div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  	   mdl-textfield--floating-label mdl-textfield--align-right">
+        <label class="mdl-button mdl-js-button mdl-button--icon"
+               	 for="waterfall-exp">
+          <i class="material-icons">search</i>
+        </label>
+        <div class="mdl-textfield__expandable-holder">
+          <input class="mdl-textfield__input" type="text" name="sample"
+                 	id="waterfall-exp">
+        </div>
+      </div>
+    </div>
+    
+<%
+	if( member != null ){	
+%>
+    <!-- Bottom row, not visible on scroll -->
+    <div class="mdl-layout__header-row">
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation -->
+      <nav class="mdl-navigation">
+      <%=member.getMb_name() %>님
+      <a class="mdl-navigation__link" href="logout.do">로그아웃</a>
+      </nav>
+    </div>
+<%
+	}else{
+%>
+	<!-- Bottom row, not visible on scroll -->
+    <div class="mdl-layout__header-row">
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation -->
+      <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="loginForm.do">Login</a>
+      <a class="mdl-navigation__link" href="memberInsertForm.do">Sign Up</a>
+      </nav>
+    </div>	
+<%
+	}
+%>
+  </header>
+  <br/>
+  <br/>
+
+<div align="center" >
+<table class="detail"  width="700" height="500">
+		<tr style="text-align:center;">
+				<th>번호</th>
+				<td colspan="2"><%= board.getBr_num() %></td>
+				<th>제목</th>
+				<td colspan="3"><%= board.getBr_title() %></td>
+		</tr>
+		<tr style="text-align:center;">
+				<th>학과</th>
+				<td colspan="2"><%= board.getBk_code() %></td><!-- 교제관련 학과 출력 -->
+				<th>책 이름</th>
+				<td colspan="3"><%= board.getBk_code() %></td><!-- 교제 이름 출력 -->
+		</tr>
+		<tr style="text-align:center;">
+				<th>게시자</th>
+				<td colspan="2"><%= board.getMb_id() %></td><!-- 게시자 이름 출력 -->
+				<th>날짜</th>
+				<td><%= board.getWrite_date() %></td>
+				<th style="width:100px">판매/구입</th>
+				<td style="width:100px"><%= board.getSale_purchase() %></td>
+		</tr>
+		<tr style="text-align:center;">
+				<th>내용</th>
+				<td colspan="7"><%= board.getBr_content().replaceAll("\n","<br/>") %></td>	
+		</tr>
+		<tr style="text-align:center;text-size:50pt;">
+			<th colspan="7">
+				[<a href="boardMain.do">메인으로</a>]&nbsp;&nbsp;
+<%
+	if(board.getSale_purchase()==null){
+%>
+
+<%
+	}else if(board.getSale_purchase().equals("s")){//판매글이면 구매하기 버튼이 있어야하고
+%>
+				[<a href="purchase.do">구매하기</a>]&nbsp;&nbsp;
+<%
+	}else if(board.getSale_purchase().equals("p")){//구매글이면 판매하기 버튼이 있어야함.
+%>
+				[<a href="sale.do">판매하기</a>]&nbsp;&nbsp;<!-- 차후 기능구현해야할 부분 -->
+<%
+	}
+	if(board.getMb_id() == member.getMb_id()){
+%>
+				[<a href="boardUpdateForm.do?br_num=<%=board.getBr_num() %>">수정</a>]&nbsp;&nbsp;
+				[<a href="boardDelete.do?br_num=<%=board.getBr_num() %>">삭제</a>]
+<%
+	}
+%>		
+			</th>
+		</tr>
+</table>
+</div>
+</div>
+</body>
+</html>

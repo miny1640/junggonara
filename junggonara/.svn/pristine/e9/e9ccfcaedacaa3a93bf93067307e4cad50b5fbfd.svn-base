@@ -1,0 +1,86 @@
+<%@page import="exe.dao.DepartmentDAO"%>
+<%@page import="exe.entity.MemberEntity"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style>
+
+table{
+border:1px solid lightgrey;
+width:400px;
+height:100px;
+margin-top:40px;
+margin-bottom:40px;
+
+}
+tbody{
+width:80px;
+
+}
+th{
+border-right-color:black;
+border-right-width:1px;
+background-color:#F8EFFB;
+}
+td{
+border:1px solid lightgrey;
+border-left-color:lightgrey;
+border-left-width:1px;
+}
+hr{
+border:2px solid #F8EFFB;
+width:400px;
+
+
+
+
+
+}
+
+
+</style>
+</head>
+<body>
+<%
+	MemberEntity member = new MemberEntity();
+	member = (MemberEntity)session.getAttribute("member");
+	DepartmentDAO departmentDAO = new DepartmentDAO();
+%>
+<div style="position:relative;top:50pt;left:650px;">
+	<h1>마이페이지</h1>
+</div>
+<br/>
+<div style="position:relative;top:18pt;left;">
+<hr>
+</div>
+<div align="center">
+<form method="post" enctype="multipart/form-data">
+<table>
+	<tr>
+		<th ><font color="black" size="5.5">이름</font></th>
+		<td style="width:200px;height:80px;"><%=member.getMb_name() %><input type="hidden" value="<%=member.getMb_name() %>"/></td>
+	</tr>
+	<tr>
+		<th><font color="black" size="5.5">학번</font></th>
+		<td style="width:200px;height:80px;"><%=member.getMb_id() %><input type="hidden" value="<%=member.getMb_id() %>"/></td>
+	</tr>
+	<tr>
+		<th><font color="black" size="5.5">비밀번호</font></th>
+		<td style="width:200px;height:80px;"><input type="password" value="<%=member.getMb_pw() %>" style="width:200px;height:30px;font-size:15pt; letter-spacing:3px;"></td>
+	</tr>
+	<tr>
+		<th><font color="black" size="5.5">학과</font></th>
+		<td style="width:200px;height:80px;"><%=departmentDAO.selectDept(member.getDept_code()) %><input type="hidden" value="<%=member.getDept_code() %>"/></td>
+	</tr>
+</table>
+<input type="reset" value="다시 작성" style="width:80px;height:40px;background-color:white;margin:10px;cursor:pointer;"/>
+<input type="submit" value="수정 완료" formaction="memberUpdate.do" style="width:80px;height:40px;background-color:white;margin:10px;cursor:pointer;"/>
+<input type="submit" value="메인으로 돌아가기" formaction="boardMain.do" style="width:130px;height:40px;background-color:white;cursor:pointer;"/>
+</form>
+</div>
+</body>
+</html>

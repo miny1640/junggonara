@@ -1,0 +1,57 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Gaegu&amp;subset=korean" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/junggonara.css"/>
+</head>
+<body id="pwdbody">
+<div align="center">
+ <a href="boardMain.do"><img src="image/main_logo.png" width="200" height="160"/></a>
+<br/>
+<br/>
+<br/>
+  <img src="image/question.png" id="pwdimg" width="50" height="50"/>
+  <font color="black" size="5">비밀번호 찾기</font>
+
+<hr align="center" style="border:solid 1px #F2F5A9;width:30%"/>
+<br/>
+<div align="center">
+<font size="5">학번을 입력하시고 버튼을 눌러주세요!</font>
+<p/>
+<br/>
+
+<form action="searchPassword.do" method="post">
+
+<input type="text" name="schoolnumber" id="schoolnumber" placeholder="학번을 입력하시면" 
+	style="align:center; text-align:left; font-size:20pt; "/>
+&nbsp;
+
+<input  TYPE="IMAGE" src="image/searching-magnifying-glass.png" name="submit" 
+value="submit" align="absmiddle"/>
+
+</form>
+<p/>
+<br/>
+<br/>
+
+<!-- 학번 입력하면 그에 맞는 비밀번호 뜨기 -->
+<img src="image/key.png" alt="비밀번호" style="width:70px;height:55px;"/>
+<%
+	String pw = (String)session.getAttribute("mb_pw");
+	if(pw == null) {
+		pw = " 학번을 입력해주세요";
+	}
+%>
+&nbsp;&nbsp;<font size="5">:<%= pw%>
+</font>
+
+
+</div>
+</div>
+
+</body>
+</html>

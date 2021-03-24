@@ -1,0 +1,35 @@
+<%@page import="exe.entity.BoardEntity"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+		BoardEntity board = 
+					(BoardEntity)request.getAttribute("board");
+%>
+<table border="1">
+		<tr>
+				<th>번호</th>
+				<td><%= board.getBr_num() %></td>
+				<th>학과</th>
+				<td>학과 정보</td>
+				<th>제목</th>
+				<td><%= board.getBr_title() %></td>
+				<th>날짜</th>
+				<td><%= board.getWrite_date() %></td>
+				<th>게시자</th>
+				<td><%= board.getMb_id() %></td>
+				<th>판매/구입</th>
+				<td><%= board.getSale_purchase() %></td>			
+		</tr>
+</table>
+</body>
+</html>
+
+
+

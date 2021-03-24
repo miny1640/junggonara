@@ -1,0 +1,363 @@
+<%@page import="exe.entity.MemberEntity"%>
+<%@page import="exe.dao.BookDAO"%>
+<%@page import="exe.entity.BookEntity"%>
+<%@page import="exe.dao.DepartmentDAO"%>
+<%@page import="exe.entity.DepartmentEntity"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Gaegu&amp;subset=korean" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/junggonara.css"/>
+<style>
+fieldset{
+   background-color:#FFFF00;
+}
+
+body{
+   font-family: 'Gaegu', cursive;
+}
+
+input, select{
+   font-family: 'Gaegu', cursive;
+   size:5px;
+   background-color:white;
+}
+
+th{
+      background-color:#F8EFFB;
+      background: linear-gradient(to right bottom, #F8EFFB, white );
+      border-right:3px solid #e5e5e5;
+      border-top:none;
+      border-left:none;
+      border-bottom:3px solid #e5e5e5;
+}
+
+td{
+      background-color:white;
+      border-right:none;
+      border-top:none;
+      border-left:1px solid #e5e5e5;
+      border-bottom:5px solid #e5e5e5;
+}
+</style>
+<script type = "text/javascript">
+	function itemChange(value){
+		/*학과 선택 -> 해당 교과목 선택 가능*/
+<%
+	ArrayList<DepartmentEntity> dept_list = new ArrayList<DepartmentEntity>();
+	ArrayList<BookEntity> book_list = new ArrayList<BookEntity>();
+	DepartmentDAO dept_dao = new DepartmentDAO();
+	BookDAO book_dao = new BookDAO();
+	dept_list = dept_dao.selectAll();
+	if(dept_list.size() == 0){ // 학과가 없을 때의 default
+		
+	}else{
+%>
+		$('#bk_code').empty(); // 학과 관련 책 목록 출력을 위한 준비
+<%
+		for(DepartmentEntity dept : dept_list){//학과에 관련된 교제를 출력시키기 위한 작업
+%>
+			if(value == '<%=dept.getDept_code()%>'){
+<%
+				book_list = book_dao.select(dept.getDept_code());//list에 책 내용집어넣기
+
+				for(BookEntity book : book_list){
+%>
+					var option = "<option value='<%=book.getBk_code()%>'><%=book.getBk_title()%></option>";
+					$('#bk_code').append(option);
+<%
+				}
+%>
+			}
+<%
+		}
+	}
+%>
+	}
+</script>
+</head>
+<body id="resultbody">
+<%
+	int error = 0;
+	try{
+		error = Integer.parseInt(request.getParameter("code"));	//숫자 입력시 잘못된 결과 발생 방지
+	}catch(Exception e){
+%>
+	ERROR_PAGE
+<%	
+	}
+	if(error == 1){
+%>
+<div align="center">
+<form action="memberInsert.do" method="post">
+<p>
+<img src="image/main_logo.png"  width="200" height="160" />
+<p/>
+<p><font size="2em" color="red">회원가입을 실패했습니다.<br/>다시 입력해주세요.</font></p>
+<h1 id="memberdiv">[회원가입]</h1>
+	<div id="money" align="center">
+		<b>
+		<font size="4.5">돈이 오가는 거래이기 때문에 사기 행위, 남을 속이는 행위는</font>
+		<font color="red" size="5"> 법에 의거하여 처벌 받을 수 있습니다!</font>
+		</b>
+	</div>
+<br/>
+<table class="membertable"> 
+<tr>
+	<th scope="row"><font color="black" size="5.5">이름</font></th>
+	<td><input type="text" name="mb_name" style="width:200px; height:30px;font-size:15pt;" /></td>
+</tr>
+<tr>
+	<th scope="row"><font color="black" size="5.5">학번</font></th>
+	<td><input type="text" name="mb_id" style="width:200px; height:30px;font-size:15pt;" placeholder="하이픈없이 입력^-^" /></td>
+</tr>
+<tr>
+	<th><font color="black" size="5.5">비밀번호</font></th>
+	<td><input type="password" name="mb_pw" style="width:200px; height:30px;font-size:15pt; letter-spacing:3px"/>
+	<p/><small style="color:red; ">5~13자리 이내의 영문과 숫자 기입//</small>
+	</td>
+</tr>
+<%
+	ArrayList<DepartmentEntity> list = new ArrayList<DepartmentEntity>();
+	DepartmentDAO dao = new DepartmentDAO();
+	list = dao.selectAll();
+%>
+<tr>
+	<th><font color="black" size="5.5">학과</font></th>
+<%
+	if(list.size()==0){
+%>
+	<td>
+		NONE
+	</td>
+<%
+	}else{
+%>
+	<td>
+	<select name="dept_code" style="width:200px; height:30px;font-size:15pt;">
+<%
+		for(DepartmentEntity dept : list){
+%>
+		<option value="<%=dept.getDept_code()%>"><%=dept.getDept_name() %></option>
+<%
+		}
+%>
+	</select>
+	</td>
+<%
+	}
+%>
+</tr>
+<tr>
+	<td colspan="2"> <!-- 두칸을 하나로 합침 -->
+		<div align="center">
+			<input type="submit" value="회원 가입" style="border:1px solid #e5e5e5;background-color:white; font-size:12pt; width:70px;height:40px; margin:10px;"/>
+			<input type="reset" value="다시쓰기"style="border:1px solid #e5e5e5;background-color:white;font-size:12pt;width:70px; height:40px;"/>
+		</div>
+	</td>
+</tr>
+</table>
+</form>
+<small style="color:black;"><a href="boardMain.do">메인으로 돌아가기</a></small>
+
+</div>
+<%
+	}else if(error == 2){
+%>
+<div align="center"><img src="image/main_logo.png"  width="200" height="160"/></div>
+<br/>
+<form action="login.do" method="post">
+<div align="center">
+<p><font size="2em" color="red">로그인에 실패했습니다.<br/>다시 시도해주세요.</font></p>
+	<fieldset id="loginfield">
+		<legend><img src="image/id-card.png" width="90" height="100"/></legend>
+		<ul>
+			<li>
+				<label for="id" style="align:center;">학번&nbsp;&nbsp;&nbsp;</label>
+				<input type="text" name="id" id="id" style="width:250px; height:30px;align:center;text-align:center;"/>
+			</li>
+			<li>
+				<label for="pw">비밀번호</label>
+				<input type="password" name="pw" id="pw" style="width:250px; height:30px;align:center;text-align:center;"/>
+			</li>
+		</ul>
+		<br/><br/>
+		<small style="color:black;">비밀번호가 기억이 나지 않는다면?
+		<a href="searchPasswordForm.do"><font style="color:blue;">▷여기</font></a><br/>
+		<a href="boardMain.do">메인으로 돌아가기</a></small>
+		<p/>
+		<input type="submit" value="로그인" id="logininput" style="width:70px;height:50px;background-color:white;"/>
+	</fieldset>
+</div>
+</form>
+<%
+	}else if(error == 3){//게시물 작성 실패
+%>
+<%
+	MemberEntity member = new MemberEntity();
+	member = (MemberEntity)session.getAttribute("member");
+%>
+<br>
+<form action="boardMain.do" method="post">
+<input type="submit" value="◀◁◀" style="height:50px; width:100px; background-color:white; 
+border:2px lightyellow solid; color:black;font-size:10pt" />
+</form>
+
+<!-- 중고나라 이미지 -->
+<div align="center">
+   <a href="boardMain.do"><img src="image/main_logo.png" width="200" height="160"/></a>
+	<p><font size="2em" color="red">게시물작성 실패했습니다.<br/>다시 입력해주세요.</font></p>
+	<div style="text-align:center;">
+      <h1>[글 작성]</h1>
+  		 </div>
+<form	action="boardInsert.do" 
+		method="post" 
+		enctype="multipart/form-data"> <!-- 입력하면 보드인서트로 이동 -->
+   <fieldset  style="margin-left:30%; margin-right:30%; background-color:white;">
+   <p>원하는 작성을 선택하세요.(1개만 선택 가능)</p>
+         <label>
+            <input type="radio" name="sale_purchase" value="s"/>판매
+         </label>
+         <label> 
+            <input type="radio" name="sale_purchase" value="p"/>구입
+         </label>
+   </fieldset>
+   <br/>
+<table height="700" width="700" style="border:2px solid #e5e5e5; border-collapse:collapse;"> <!-- 테이블 테두리 -->
+   <tr>
+         <th><font size="5">제목</font></th>
+         <td><input type="text" name="br_title" style="text-align:center; width:250px; height:20px; letter-spacing: 5px; font-size:12pt;"/></td>
+   </tr>
+
+   <tr>
+         <th><font color="black" size="5" >학과</font></th>  
+<%
+	if(dept_list.size()==0){//DB에 저장되어 있는 학과를 못찾거나 없으면 NONE
+%>
+	<td>NONE</td>
+<%
+	}else{//DB에 저장되어 있는 학과 정보를 이용하여 학과선택 학과를 직접 적어서 작성할 필요가 없다.
+%> 
+     <td>      <!-- 학과선택 -->
+         <select id="dept_code" onchange="itemChange(this.value)" style="text-align:center; width:250px; height:20px; font-size:12pt;" >
+			<option value="0">학과를 선택하세요</option>
+<%
+		for(DepartmentEntity dept : dept_list){
+%>               
+			<option value="<%=dept.getDept_code()%>"><%=dept.getDept_name() %></option>
+<%
+		}
+%>
+         </select>
+      </td>
+<%
+	}
+%>
+   </tr>
+   <tr>		<!-- 학과에 관련된 책제목 출력 기능 구현 -->
+   			<!-- 고정값 : 이름, 책, 학과 -->
+   			<!-- 첨부파일 구현은 게시글 작성 기능 구현하면 완성시킬예정 -->
+        <th><font size="5">책 이름</font></th>
+        <td>
+        <select id="bk_code" name="bk_code" style="text-align:center;width:250px;height:20px;font-size:12pt ">
+        </select>
+        </td> 
+   </tr>
+   <tr>
+         <th><font size="5">가격</font></th>
+         <td><input type="text" name="br_price" placeholder="숫자만 기입해주세요/"/></td>
+   </tr>
+   <tr>
+         <th><font size="5">게시자</font></th><!-- 이름이 뜨지만 실제로 id값이 전달됩니다. -->
+         <td>
+         	<%=member.getMb_name() %>
+         	<input type="hidden" name="mb_id" value="<%=member.getMb_id() %>"/>
+         </td>
+      </tr>
+   
+   <tr>
+      <th><font size="5">내용</font></th>
+      <td><textarea name="br_content" rows="5" cols="50" ></textarea></td>
+   </tr>
+   <tr>
+      <th><font size="5">첨부파일</font></th>
+      <td><input type ="file" name = "upFile"/></td>
+   </tr>
+   <tr>
+      <td colspan="2" align="center">    <!-- 두칸을 하나로 합침 -->
+            <input type="submit" value="작성 완료"/>
+            <input type="reset" value="다시쓰기"/>
+      </td>
+   </tr>
+</table>
+</form>
+</div>
+<%
+	}else if(error == 4){//deleteCommand 실행 실패
+%>
+	ERROR_PAGE
+<%
+	}else if(error == 5){//searchPasswordCommand 실행 실패
+%>
+<div align="center">
+ <a href="boardMain.do"><img src="image/main_logo.png" width="200" height="160"/></a>
+<br/>
+<br/>
+<p><font size="2em" color="red">비밀번호 찾기 실패했습니다.<br/>다시 입력해주세요.</font></p>
+<br/>
+  <img src="image/question.png" id="pwdimg" width="50" height="50"/>
+  <font color="black" size="5">비밀번호 찾기</font>
+
+<hr align="center" style="border:solid 1px #F2F5A9;width:30%"/>
+<br/>
+<div align="center">
+<font size="5">학번을 입력하시고 버튼을 눌러주세요!</font>
+<p/>
+<br/>
+
+<form action="searchPassword.do" method="post">
+
+<input type="text" name="schoolnumber" id="schoolnumber" placeholder="학번을 입력하시면" 
+	style="align:center; text-align:left; font-size:20pt; "/>
+&nbsp;
+
+<input  TYPE="IMAGE" src="image/searching-magnifying-glass.png" name="submit" 
+value="submit" align="absmiddle"/>
+
+</form>
+<p/>
+<br/>
+<br/>
+
+<!-- 학번 입력하면 그에 맞는 비밀번호 뜨기 -->
+<img src="image/key.png" alt="비밀번호" style="width:70px;height:55px;"/>
+<%
+	String pw = (String)session.getAttribute("mb_pw");
+	if(pw == null) {
+		pw = " 학번을 입력해주세요";
+	}
+%>
+&nbsp;&nbsp;<font size="5">:<%= pw%>
+</font>
+
+
+</div>
+</div>
+<%
+	}else{
+		//error == 6
+		//error == 7
+		//error == 8
+		//error == 9
+%>
+	ERROR_PAGE
+<%
+	}
+%>
+</body>
+</html>

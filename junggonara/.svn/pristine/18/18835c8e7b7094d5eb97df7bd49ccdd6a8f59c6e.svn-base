@@ -1,0 +1,59 @@
+package exe.command;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.swing.JOptionPane;
+
+import exe.common.ActionForward;
+import exe.common.Command;
+import exe.dao.MemberDAO;
+import exe.entity.MemberEntity;
+
+public class MemberInsertCommand implements Command {
+
+	@Override
+	public ActionForward execute(HttpServletRequest request) 
+			throws IOException, ServletException {
+
+		ActionForward action = new ActionForward();
+		try {
+			request.setCharacterEncoding("euc-kr");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		String mb_id = request.getParameter("mb_id");
+		String mb_name = request.getParameter("mb_name");
+		String mb_pw = request.getParameter("mb_pw");
+		String dept_code = request.getParameter("dept_code");
+		
+		MemberEntity member = new MemberEntity();
+		try {											//아무것도 입력안한후 회원가입시
+			member.setMb_id(Integer.parseInt(mb_id));	//발생하는 오류를
+			member.setMb_name(mb_name);					//result.jsp로 넘어가게 해줌
+			member.setMb_pw(mb_pw);
+			member.setDept_code(dept_code);
+		}catch(Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "회원가입 에러");
+			action.setPath("memberInsertForm.do");
+			action.setSend(true);
+			return action;
+		}
+		MemberDAO dao = new MemberDAO();
+		boolean result = dao.insert(member);
+		
+		
+		if(result == true) {
+			action.setPath("loginForm.do");
+			action.setSend(true);
+		}else {
+			JOptionPane.showMessageDialog(null, "회원가입 실패했습니다 다시 시도해주세요!");
+			action.setPath("memberInsertForm.do");
+			action.setSend(true);
+		}
+		return action;
+	}
+
+}

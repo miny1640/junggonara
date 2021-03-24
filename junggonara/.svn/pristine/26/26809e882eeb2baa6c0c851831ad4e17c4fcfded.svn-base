@@ -1,0 +1,30 @@
+package exe.command;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import exe.common.ActionForward;
+import exe.common.Command;
+import exe.dao.MemberDAO;
+import exe.entity.MemberEntity;
+
+public class SearchPasswordCommand implements Command {
+
+	@Override
+	public ActionForward execute(HttpServletRequest request) throws IOException, ServletException {
+		ActionForward action = new ActionForward();
+		int id = Integer.parseInt(request.getParameter("id"));
+		MemberDAO dao = new MemberDAO();
+		MemberEntity member = dao.SearchPassword(id);
+		
+		String pw = member.getMb_pw();
+		HttpSession session = request.getSession();
+		session.setAttribute("mb_pw", pw);
+		
+		return action;
+	}
+	
+}

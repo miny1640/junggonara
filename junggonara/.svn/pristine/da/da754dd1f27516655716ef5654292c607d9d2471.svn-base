@@ -1,0 +1,26 @@
+<%@page import="exe.entity.MemberEntity"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	request.setCharacterEncoding("euc-kr");
+	MemberEntity member = new MemberEntity();
+	member = (MemberEntity)session.getAttribute("member");
+	if(member.getMb_id()==0&&member.getMb_pw().equals("0")){
+%>
+		<!-- 관리자 창 -->
+<%
+	}else{
+%>
+		<a href="boardMain.do">메인으로</a>
+<%
+	}
+%>
+</body>
+</html>

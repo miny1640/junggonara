@@ -1,0 +1,46 @@
+package exe.command;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
+
+import exe.common.ActionForward;
+import exe.common.Command;
+import exe.dao.MemberDAO;
+import exe.entity.MemberEntity;
+
+public class LoginCommand implements Command {
+
+	@Override
+	public ActionForward execute(HttpServletRequest request) throws IOException, ServletException {
+		ActionForward action = new ActionForward();
+		MemberEntity member = new MemberEntity();
+		MemberDAO dao = new MemberDAO();
+		try {
+			int id = Integer.parseInt(request.getParameter("id"));
+			String pw = request.getParameter("pw");
+			member = dao.login(id,pw);
+		}catch(Exception e) {
+			e.printStackTrace();
+			action.setPath("WEB-INF/result.jsp?code=2");
+			action.setSend(false);
+		}
+		
+		if(member!=null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("member", member);
+			
+			action.setPath("boardMain.do");
+			action.setSend(false);
+		}else {
+			JOptionPane.showMessageDialog(null, "로그인 실패했습니다 다시 시도해주세요!");
+			action.setPath("loginForm.do");
+			action.setSend(true);
+		}
+		return action;
+	}
+	
+}

@@ -1,0 +1,30 @@
+package exe.command;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import exe.common.ActionForward;
+import exe.common.Command;
+import exe.dao.CommentDAO;
+import exe.entity.MemberEntity;
+
+public class BoardReplyDeleteCommand implements Command {
+
+	@Override
+	public ActionForward execute(HttpServletRequest request) throws IOException, ServletException {
+		
+		ActionForward action = new ActionForward();
+		HttpSession session = request.getSession();
+		CommentDAO dao = new CommentDAO();
+		MemberEntity member = (MemberEntity)session.getAttribute("member");
+		
+		
+		
+		
+		return action;
+	}
+
+}

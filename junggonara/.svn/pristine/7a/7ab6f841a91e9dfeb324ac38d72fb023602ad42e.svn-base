@@ -1,0 +1,5 @@
+package exe.dao;
+
+public class CommentDAO extends CommonDAO {
+
+}

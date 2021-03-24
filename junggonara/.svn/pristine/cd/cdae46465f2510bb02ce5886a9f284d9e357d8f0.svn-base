@@ -1,0 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Gaegu&amp;subset=korean" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/junggonara.css"/>
+</head>
+<body id="loginbody">
+<div align="center"><img src="image/main_logo.png"  width="200" height="160"/></div>
+<br/>
+<form action="login.do" method="post">
+<div align="center">
+	<fieldset id="loginfield">
+		<legend><img src="image/id-card.png" width="90" height="100"/></legend>
+		<ul>
+			<li>
+				<label for="id" style="align:center;">학번&nbsp;&nbsp;&nbsp;</label>
+				<input type="text" id="id" style="width:250px; height:30px;align:center;text-align:center;"/>
+			</li>
+			<li>
+				<label for="pw">비밀번호</label>
+				<input type="password" id="pw" style="width:250px; height:30px;align:center;text-align:left;"/>
+			</li>
+		</ul>
+		<br/><br/>
+		<small style="color:black;">비밀번호가 기억이 나지 않는다면?
+		<a href="searchPasswordForm.do"><font style="color:blue;">▷여기</font></a><br/>
+		<a href="boardMain.do">메인으로 돌아가기</a></small>
+		<p/>
+		<input type="submit" value="로그인" id="logininput" style="width:70px;height:50px;background-color:white;"/>
+	</fieldset>
+</div>
+</form>
+</body>
+</html>

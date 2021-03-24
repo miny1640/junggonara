@@ -1,0 +1,37 @@
+package exe.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import exe.entity.DepartmentEntity;
+
+public class DepartmentDAO extends CommonDAO {
+	public ArrayList<DepartmentEntity> selectAll(){
+		ArrayList<DepartmentEntity> list = new ArrayList<DepartmentEntity>();
+		String query = "select * from jg_department";
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			stmt = con.prepareStatement(query);
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				DepartmentEntity dept = new DepartmentEntity();
+				dept.setDept_code(rs.getString("dept_code"));
+				dept.setDept_name(rs.getString("dept_name"));
+				list.add(dept);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(stmt);
+			close(con);
+		}
+		return list;
+	}
+}

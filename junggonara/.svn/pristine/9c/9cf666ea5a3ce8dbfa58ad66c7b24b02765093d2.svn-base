@@ -1,0 +1,200 @@
+package exe.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import exe.entity.CommentEntity;
+
+public class CommentDAO extends CommonDAO {
+	
+		public ArrayList<CommentEntity> selectComment(int br_num){
+			ArrayList<CommentEntity> list = new ArrayList<CommentEntity>();
+			String query = "select * from jg_Comment where br_num = ?";
+			Connection con = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			try {
+				con = ds.getConnection();
+				stmt = con.prepareStatement(query);
+				stmt.setInt(1, br_num);
+				rs = stmt.executeQuery();
+
+				while (rs.next()) {
+					CommentEntity comment = new CommentEntity();
+					comment.setBr_num(rs.getInt("br_num"));
+					comment.setCm_no(rs.getInt("cm_no"));
+					comment.setMb_id(rs.getInt("mb_id"));
+					comment.setCm_content(rs.getString("cm_content"));
+					comment.setWrite_date(rs.getDate("write_date"));
+					comment.setSecret(rs.getString("secret"));
+					
+					list.add(comment);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(stmt);
+				close(con);
+			}
+			return list;
+		}
+		public boolean answer(CommentEntity comment) {
+			boolean result = false;
+			int tmp =0;
+			String query = "insert into jg_comment "
+					+ "values(?,seq_comment.nextval, ?,?, sysdate,?)";
+			
+			System.out.println(comment.getBr_num());
+			System.out.println(comment.getCm_content());
+			
+			Connection con = null;
+			PreparedStatement stmt = null;
+			try {
+				con = ds.getConnection();
+				stmt = con.prepareStatement(query);
+				stmt.setInt(1, comment.getBr_num());
+				stmt.setInt(2, comment.getMb_id());
+				stmt.setString(3, comment.getCm_content());
+				stmt.setString(4, comment.getSecret());
+				
+				tmp = stmt.executeUpdate();
+				if(tmp == 0) {
+					result = false;
+				}else {
+					result = true;
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				close(stmt);
+				close(con);
+			}
+			return result;
+		}
+		public int cm_totalRow(int br_num) {
+			int cm_totalRow = 0;
+			
+			String query = "select count(*) from jg_Comment where br_num = ?";
+
+			Connection con = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			try {
+				con = ds.getConnection();
+				stmt = con.prepareStatement(query);
+				stmt.setInt(1, br_num);
+				
+				rs = stmt.executeQuery();
+				rs.next();
+				cm_totalRow = rs.getInt(1);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(stmt);
+				close(con);
+			}
+
+			return cm_totalRow;
+		}
+		
+		public ArrayList<CommentEntity> select(int br_num,int startnum, int scope) {
+			ArrayList<CommentEntity> list = new ArrayList<CommentEntity>();
+			String query = "select c.* from(select rownum rnum, b.* from (select * from jg_comment where br_num = ? order by cm_no desc) b) c where rnum between ? and ?";
+			
+			Connection con = null;
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+
+			System.out.println(br_num + " : " + startnum + " : " + scope);
+			try {
+				con = ds.getConnection();
+				stmt = con.prepareStatement(query);
+				stmt.setInt(1, br_num);
+				stmt.setInt(2, startnum);
+				stmt.setInt(3, startnum + scope - 1);
+				
+				rs = stmt.executeQuery();
+				
+				while (rs.next()) {
+					CommentEntity comment = new CommentEntity();
+					comment.setBr_num(rs.getInt("br_num"));
+					comment.setCm_no(rs.getInt("cm_no"));
+					comment.setMb_id(rs.getInt("mb_id"));
+					comment.setCm_content(rs.getString("cm_content"));
+					comment.setWrite_date(rs.getDate("write_date"));
+					comment.setSecret(rs.getString("secret"));
+				
+					list.add(comment);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(stmt);
+				close(con);	
+			}
+			return list;
+		}
+		
+		public boolean delete(String br_num, String cm_no, int mb_id) {
+			boolean result=false;
+			int tmp =0;
+			String query = "delete from jg_comment where br_num = ? and cm_no =? and mb_id = ?";
+			
+			Connection con=null;
+			PreparedStatement stmt=null;
+			
+			try {
+				con = ds.getConnection();
+				stmt = con.prepareStatement(query);
+				stmt.setInt(1, Integer.parseInt(br_num));
+				stmt.setInt(2, Integer.parseInt(cm_no));
+				stmt.setInt(3, mb_id);
+				
+				tmp = stmt.executeUpdate();
+				if(tmp==0) {
+					result=false;
+				}else {
+					result=true;
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				close(stmt);
+				close(con);
+			}
+			return result;
+		}
+		public boolean deleteAll(String br_num) {
+			boolean result=false;
+			int tmp =0;
+			String query = "delete from jg_comment where br_num = ?";
+			
+			Connection con=null;
+			PreparedStatement stmt=null;
+			
+			try {
+				con = ds.getConnection();
+				stmt = con.prepareStatement(query);
+				stmt.setInt(1, Integer.parseInt(br_num));
+				
+				tmp = stmt.executeUpdate();
+				if(tmp==0) {
+					result=false;
+				}else {
+					result=true;
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				close(stmt);
+				close(con);
+			}
+			return result;
+		}
+}

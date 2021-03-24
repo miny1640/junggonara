@@ -1,0 +1,40 @@
+@charset "EUC-KR";
+
+body{
+
+	
+}
+table{
+
+	width:700px;
+	height:600px;
+	margin-left: auto;
+	margin-right: auto; 
+ 	border:2px solid #e5e5e5;
+  	border-collapse:collapse;
+	font-size:18pt;	
+	margin-top:50px;
+	text-align:center;
+
+}
+
+th{
+	  background-color:#F8EFFB;
+      background: linear-gradient(to right bottom, #F8EFFB, white );
+      border-right:3px solid #e5e5e5;
+      border-top:none;
+      border-left:none;
+      border-bottom:3px solid #e5e5e5;	
+}
+td{
+	  background-color:white;
+      border-right:none;
+      border-top:none;
+      border-left:1px solid #e5e5e5;
+      border-bottom:5px solid #e5e5e5;
+}
+#button{
+	background-color:white;
+	width:100px;
+	height:80px;
+}

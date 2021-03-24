@@ -1,0 +1,72 @@
+<%@page import="exe.entity.MemberEntity"%>
+<%@page import="exe.entity.BoardEntity"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+		BoardEntity board = (BoardEntity)request.getAttribute("board");
+		MemberEntity member = (MemberEntity)session.getAttribute("member");
+%>
+<table border="1">
+		<tr>
+				<th>번호</th>
+				<td colspan="2"><%= board.getBr_num() %></td>
+				<th>제목</th>
+				<td colspan="3"><%= board.getBr_title() %></td>
+		</tr>
+		<tr>
+				<th>학과</th>
+				<td colspan="2"><%= board.getBk_code() %></td><!-- 교제관련 학과 출력 -->
+				<th>책 이름</th>
+				<td colspan="3"><%= board.getBk_code() %></td><!-- 교제 이름 출력 -->
+		</tr>
+		<tr>
+				<th>게시자</th>
+				<td colspan="2"><%= board.getMb_id() %></td><!-- 게시자 이름 출력 -->
+				<th>날짜</th>
+				<td><%= board.getWrite_date() %></td>
+				<th>판매/구입</th>
+				<td><%= board.getSale_purchase() %></td>
+		</tr>
+		<tr>
+				<th>내용</th>
+				<td colspan="7"><%= board.getBr_content().replaceAll("\n","<br/>") %></td>	
+		</tr>
+		<tr>
+			<th colspan="7">
+				[<a href="boardMain.do">메인으로</a>]
+<%
+	if(board.getSale_purchase()==null){
+%>
+
+<%
+	}else if(board.getSale_purchase().equals("s")){//판매글이면 구매하기 버튼이 있어야하고
+%>
+				[<a href="purchase.do">구매하기</a>]
+<%
+	}else if(board.getSale_purchase().equals("p")){//구매글이면 판매하기 버튼이 있어야함.
+%>
+				[<a href="sale.do">판매하기</a>]<!-- 차후 기능구현해야할 부분 -->
+<%
+	}
+	if(board.getMb_id() == member.getMb_id()){
+%>
+				[<a href="boardUpdateForm.do?br_num=<%=board.getBr_num() %>">수정</a>]
+				[<a href="boardDelete.do?br_num=<%=board.getBr_num() %>">삭제</a>]
+<%
+	}
+%>		
+			</th>
+		</tr>
+</table>
+</body>
+</html>
+
+
+

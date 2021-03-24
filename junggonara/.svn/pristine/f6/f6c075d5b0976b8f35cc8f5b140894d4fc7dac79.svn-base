@@ -1,0 +1,8 @@
+@charset "EUC-KR";
+
+passwordfield{
+	border-bottom-width:7px;
+	border-right-width:7px;
+	border-right-color:lightgrey;
+	border-bottom-color:lightgrey;
+}

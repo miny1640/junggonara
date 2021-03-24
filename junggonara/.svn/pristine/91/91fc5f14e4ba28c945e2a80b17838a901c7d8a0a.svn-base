@@ -1,0 +1,163 @@
+@charset "EUC-KR"; 
+ 
+body {
+        background-color:;
+    }
+
+p {
+        font-family: "Nanum Gothic", sans-serif;
+        font-size: 15px;
+        vertical-align: center;
+      }
+p.a {
+        font-weight: 400;
+        vertical-align:center;
+      }
+p.b {
+        font-weight: 600;
+      }
+
+    ul#type1 { list-style: disc; }
+    ul#type2 { list-style: circle; }
+    ul#type3 { list-style: decimal; }
+    ul#type4 { list-style: lower-roman; }
+    ul#type5 { list-style: upper-roman; }
+    ul#type6 { list-style: lower-alpha; }
+    ul#type7 { list-style: upper-alpha; }
+    
+    /* 조회수TOP3 CSS*/
+    table.type09 {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+}
+table.type09 thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #369;
+    border-bottom: 3px solid #036;
+}
+table.type09 tbody th {
+    width: 10px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #f3f6f7;
+}
+table.type09 td {
+    width: 170px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+
+		/* 왼쪽 학과 목차 CSS */
+table.type03 thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #369;
+}
+table.type03 tbody th {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-left: 3px solid #369;
+  margin : 20px 10px;
+}
+table.type03 th {
+    width: 170px;
+    padding: 15px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #153d73;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+table.type03 td {
+    width: 349px;
+    padding: 10px;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+table.type01 {
+    border-collapse: collapse;
+    text-align: left;
+	line-height: 1.5;
+    margin : 20px 10px;
+}
+table.type01 th {
+    width: 50px;
+    padding: 100px;
+    font-weight: bold;
+    vertical-align: top;
+    border: 1px solid #ccc;
+    border-bottom: 3px solid #036;
+}
+table.type01 td {
+    width: 10px;
+    padding: 30px;
+    vertical-align: top;
+    border: 1px solid #ccc;
+}
+.simple_table{
+   font-family: 'Gaegu', cursive;
+   width:100%
+   border:none;
+   border-collapse:separate;
+   border-spacing:2px;
+}
+.simple_table th {
+   font-family: 'Gaegu', cursive;   
+    padding: 15px;
+    border: none;
+    border-top:2px solid #FFFF00;
+    border-left: 1px solid #FBEFFB;
+    border-bottom: 1px solid #DDD;
+    background: white;
+    font-weight: normal;
+    text-align:center;
+    text-shadow: 0 1px #FFF;
+    vertical-align: middle;
+}
+
+.simple_table tbody td{
+   font-family: 'Gaegu', cursive;
+   padding:5px 0; 
+   text-align:center; 
+   border-top:none;
+   border-bottom:1px solid #e5e5e5;
+}
+
+	/*서브(리스트)_페이지넘버 CSS*/
+    .list_number{padding-top:25px; text-align:center;}
+    .list_n_menu {padding:3px; MARGIN:3px; TEXT-ALIGN: center}
+    .list_n_menu A {padding:5px 8px 4px 8px; MARGIN: 2px; BORDER: #ccc 1px solid; COLOR: #000000; TEXT-DECORATION: none}
+    .list_n_menu A:hover {BORDER:#0000001px solid; COLOR: #000000;}
+    .list_n_menu A:active {BORDER:#000000 1px solid; COLOR: #000000;}
+    .list_n_menu .current {BORDER: #000000 1px solid; padding:5px 8px 4px 8px; FONT-WEIGHT: bold; MARGIN: 2px; COLOR: #000000;}
+    .list_n_menu .disabled {BORDER: #eee 1px solid; padding:5px 8px 4px 8px; MARGIN: 2px; COLOR: #000000;}
+    
+    .btn-raised {
+    padding: .5em 1.2em;
+    text-decoration: none;
+    color: #fff;
+    background: #494EE5;
+    text-align: center;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.btn-raised:hover {
+    background: #42A5F5;
+}
+/*detail*/
+#detail{
+	border:2px solid blue;
+	
+}
+    

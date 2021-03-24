@@ -1,0 +1,22 @@
+package exe.command;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+
+import exe.common.ActionForward;
+import exe.common.Command;
+
+public class LogoutCommand implements Command {
+
+	@Override
+	public ActionForward execute(HttpServletRequest request) throws IOException, ServletException {
+		// TODO Auto-generated method stub
+		ActionForward action = new ActionForward();
+		action.setPath("WEB-INF/logout.jsp");
+		action.setSend(false);
+		return action;
+	}
+
+}

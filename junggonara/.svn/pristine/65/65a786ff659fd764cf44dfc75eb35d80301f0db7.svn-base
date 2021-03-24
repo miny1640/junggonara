@@ -1,0 +1,87 @@
+<%@page import="exe.dao.DepartmentDAO"%>
+<%@page import="exe.entity.DepartmentEntity"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/junggonara.css"/>
+</head>
+<body class="memberbody">
+<div align="center">
+<form action="memberInsert.do" method="post">
+<p>
+<img src="image/main_logo.png"  width="200" height="160" />
+<p/>
+<h1 id="memberdiv">[회원가입]</h1>
+	<div id="money" align="center">
+		<b>
+		<font size="4.5">돈이 오가는 거래이기 때문에 사기 행위, 남을 속이는 행위는</font>
+		<font color="red" size="5"> 법에 의거하여 처벌 받을 수 있습니다!</font>
+		</b>
+	</div>
+<br/>
+<table class="membertable"> 
+<tr>
+	<th scope="row"><font color="black" size="5.5">이름</font></th>
+	<td><input type="text" name="mb_name" style="width:200px; height:30px;font-size:15pt;" /></td>
+</tr>
+<tr>
+	<th scope="row"><font color="black" size="5.5">학번</font></th>
+	<td><input type="text" name="mb_id" style="width:200px; height:30px;font-size:15pt;" placeholder="하이픈없이 입력^-^" /></td>
+</tr>
+<tr>
+	<th><font color="black" size="5.5">비밀번호</font></th>
+	<td><input type="password" name="mb_pw" style="width:200px; height:30px;font-size:15pt; letter-spacing:3px"/>
+	<p/><small style="color:red; ">5~13자리 이내의 영문과 숫자 기입//</small>
+	</td>
+</tr>
+<%
+	ArrayList<DepartmentEntity> list = new ArrayList<DepartmentEntity>();
+	DepartmentDAO dao = new DepartmentDAO();
+	list = dao.selectAll();
+%>
+<tr>
+	<th><font color="black" size="5.5">학과</font></th>
+<%
+	if(list.size()==0){
+%>
+	<td>
+		NONE
+	</td>
+<%
+	}else{
+%>
+	<td>
+	<select name="dept_code" style="width:200px; height:30px;font-size:15pt;">
+<%
+		for(DepartmentEntity dept : list){
+%>
+		<option value="<%=dept.getDept_code()%>"><%=dept.getDept_name() %></option>
+<%
+		}
+%>
+	</select>
+	</td>
+<%
+	}
+%>
+</tr>
+<tr>
+	<td colspan="2"> <!-- 두칸을 하나로 합침 -->
+		<div align="center">
+			<input type="submit" value="회원 가입" style="border:1px solid #e5e5e5;background-color:white; font-size:12pt; width:70px;height:40px; margin:10px;"/>
+			<input type="reset" value="다시쓰기"style="border:1px solid #e5e5e5;background-color:white;font-size:12pt;width:70px; height:40px;"/>
+		</div>
+	</td>
+</tr>
+</table>
+</form>
+<small style="color:black;"><a href="boardMain.do">메인으로 돌아가기</a></small>
+
+</div>
+</body>
+</html>

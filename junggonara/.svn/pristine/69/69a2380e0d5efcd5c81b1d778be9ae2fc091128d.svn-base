@@ -1,0 +1,67 @@
+package exe.command;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
+
+
+import exe.common.ActionForward;
+import exe.common.Command;
+import exe.dao.BoardDAO;
+import exe.entity.BoardEntity;
+import exe.entity.MemberEntity;
+
+public class BoardUpdateCommand implements Command {
+
+	@Override
+	public ActionForward execute(HttpServletRequest request) throws IOException, ServletException {
+		HttpSession session = request.getSession();
+		MemberEntity member = (MemberEntity)session.getAttribute("member");
+		ActionForward action = new ActionForward();
+		
+		if(member == null) {
+			JOptionPane.showMessageDialog(null, "로그인을 먼저 해주세요!");
+			action.setPath("boardMain.do");
+			action.setSend(true);
+		}else {
+			try {
+				request.setCharacterEncoding("euc-kr");
+			}catch(Exception e) {
+			}
+			
+			try {
+				
+				String br_num = request.getParameter("br_num");
+				String br_title = request.getParameter("br_title");
+				String bk_code = request.getParameter("bk_code");
+				String br_content = request.getParameter("br_content");
+				String br_price = request.getParameter("br_price");
+				
+				BoardEntity board = new BoardEntity();
+				board.setBr_num(Integer.parseInt(br_num));
+				board.setBr_title(br_title);
+				board.setBk_code(bk_code);
+				board.setBr_content(br_content);
+				board.setBr_price(Integer.parseInt(br_price));
+				
+				BoardDAO dao = new BoardDAO();
+				boolean result = dao.update(board);
+				
+				if(result == true) {
+					action.setPath("boardMain.do");
+					action.setSend(true);
+				}else {
+					JOptionPane.showMessageDialog(null, "수정 실패했습니다. 다시 한번 입력해주세요.");
+					action.setPath("boardDetail.do");
+					action.setSend(false);
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return action;
+	}
+}

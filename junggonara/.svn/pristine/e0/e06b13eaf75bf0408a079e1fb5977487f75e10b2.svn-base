@@ -1,0 +1,4 @@
+package exe.dao;
+
+public class BookDAO extends CommonDAO {
+}
